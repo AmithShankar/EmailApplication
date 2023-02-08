@@ -1,4 +1,4 @@
-# EmailApplication
+# Email Application
  
 Based on Scenario: A IT Support Administrator Specialist who is charged with the task of creating email accounts for new hires.
 Our application does the following:
