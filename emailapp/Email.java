@@ -9,7 +9,7 @@ public class Email {
 	private String department;
 	private String email;
 	private int mailBoxCapacity;
-	private int defaultPasswordLength = 10;
+	private int passwordLength;
 	private String alternateEmail;
 	private String companySuffix = "ttg.com";
 	
@@ -22,8 +22,8 @@ public class Email {
 		this.department = setDepartment();
 		
 		// Call a method that returns a random password
-		this.password = randomPassword(defaultPasswordLength);
-		System.out.println("Your Password is: " + this.password);
+		this.password = randomPassword(passwordLength);
+		System.out.println("Your password is: " + this.password);
 		
 		// Combine elements to generate email
 		this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
@@ -51,6 +51,9 @@ public class Email {
 	// Generate a random password
 	private String randomPassword(int length){
 		String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%";
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter Password Length");
+		length = scan.nextInt();
 		char[] password = new char[length];
 		for(int i=0; i<length; i++){
 			int rand = (int) (Math.random() * passwordSet.length()); // Selects a random character in passwordSet
