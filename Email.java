@@ -14,10 +14,10 @@ public class Email {
 	private String companySuffix = "ttg.com";
 	
 	// Constructor to receive the first name and last name
-	public Email(String firstName, String lastName){
-		Scanner scan = new Scanner(System.in);
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Email(){
+		// Call getFirstName and getLastName
+		this.firstName = setFirstName();
+		this.lastName = setLastName();
 		
 		// Call a method asking for the department - return the department
 		this.department = setDepartment();
@@ -38,13 +38,32 @@ public class Email {
 		this.password = randomPassword(passwordLength);
 		System.out.println("Your password is: " + this.password);
 		
+		// Change Password
+		changePassword();
+		
 		// Set mail box capacity
 		
 	}
 	
+	// Set firstName and lastName
+		public String setFirstName(){
+			System.out.println("Enter your First Name:");
+			Scanner scan = new Scanner(System.in);
+			String firstName = scan.next();
+			return firstName;
+		}
+		
+		public String setLastName(){
+			System.out.println("Enter your Last Name:");
+			Scanner scan = new Scanner(System.in);
+			String lastName = scan.next();
+			return lastName;
+		}
+		
 	// Ask for department 
 	private String setDepartment(){
-		System.out.println("New Worker: " + firstName + "\nDepartment Codes:\n1 for Sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code: ");
+		System.out.println("New Worker: " + firstName + "\nDepartment Codes:\n1 for Sales\n2 for Development"
+				+ "\n3 for Accounting\n0 for none\nEnter department code: ");
 		Scanner scan = new Scanner(System.in);
 		int deptChoice = scan.nextInt();
 		if(deptChoice == 1){
@@ -68,11 +87,12 @@ public class Email {
 		while(true){
 			int choice = scan.nextInt();
 			if(choice == 1){
-				System.out.println("Enter your alternate email:");
+				System.out.println("The Enter your alternate email:");
 				// Checking validity of email
 				while(true){
 					String alt = scan.next();
-					String regex = "^(.+)@(.+)$";
+					String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*"
+							+ "@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
 					Pattern pat = Pattern.compile(regex);
 			        if (pat.matcher(alt).matches()==true){
 			           setAlternateEmail(alt);
@@ -101,34 +121,90 @@ public class Email {
 		char[] password = new char[length];
 		for(int i=0; i<length; i++){
 			int rand = (int) (Math.random() * passwordSet.length()); // Selects a random character in passwordSet
-			password[i] = passwordSet.charAt(rand); // The character which is selected will to placed in the i(th) position of password
+			password[i] = passwordSet.charAt(rand); // The character selected will be placed in i(th) position of password
 		}
 		return new String(password); // Converts set of characters into String and returns
 	}
 	
-	// Set the mail capacity
+	// Change Password
+	private void changePassword(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Do you want to change password? \n1 for Yes\n2 for No\nEnter your choice:");
+		while(true){
+			int choice = scan.nextInt();
+			if(choice == 1){
+				System.out.println("Password Requirement\nMUST contain at least 8 characters and at most 20 characters"
+						+ "\nMUST contain at least one uppercase letter"
+						+ "\nMUST contain at least one lowercase letter"
+						+ "\nMUST contain at least one number"
+						+ "\nMUST contain at least one special character (@#$%^&-+=())"
+						+ "\nNO spaces allowed"
+						+ "\nEnter your password password:");
+				// Checking validity of password
+				while(true){
+					String alt = scan.next();
+					String regex = "^(?=.*[0-9])"
+                       + "(?=.*[a-z])(?=.*[A-Z])"
+                       + "(?=.*[@#$%^&+=])"
+                       + "(?=\\S+$).{8,20}$";
+					Pattern pat = Pattern.compile(regex);
+			        if (pat.matcher(alt).matches()==true){
+			           setPassword(alt);
+			           System.out.println("Your password is: " + password);
+			           break;
+			        }
+			        System.out.println("The input you have entered is Invalid\nEnter valid password:");
+				}
+				break;
+			}
+			else if(choice == 2){
+				System.out.println("Your password is: " + password);
+				break;
+			}
+			System.out.println("Invalid option");
+			System.out.println("Enter valid choice:\n1 for Yes\n2 for No");
+		}
+	}
+	
+	// Set mail capacity
 	public void setMailBoxCapacity(int capacity){
 		this.mailBoxCapacity = capacity;
 		
 	}
 	
-	// Set the alternative email
+	// Set alternative email
 	public void setAlternateEmail(String altEmail){
 		this.email = altEmail;
 	}
 	
-	// Change the password
-	public void changePassword(String password){
+	// set password
+	public void setPassword(String password){
 		this.password = password;
 	}
 	
 	// Get methods
+	public String getFirstName(){
+		return firstName;
+	}
+	
+	public String getLastName(){
+		return lastName;
+	}
+	
+	public String getPassword(){
+		return password;
+	}
+	
+	public String getDepartment(){
+		return department;
+	}
+	
 	public int getMailBoxCapacity(){
 		return mailBoxCapacity;
 	}
 		
-	public String getPassword(){
-		return password;
+	public String getEmail(){
+		return email;
 	}
 	
 	// Display
