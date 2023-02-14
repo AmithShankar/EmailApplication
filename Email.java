@@ -13,8 +13,9 @@ public class Email {
 	private int passwordLength;
 	private String companySuffix = "ttg.com";
 	
-	// Constructor to receive the first name and last name
+	// Constructor
 	public Email(){
+		
 		// Call getFirstName and getLastName
 		this.firstName = setFirstName();
 		this.lastName = setLastName();
@@ -24,10 +25,10 @@ public class Email {
 		
 		// Combine elements to generate email
 		if(department!=""){
-			this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
+			this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + '@' + department + "." + companySuffix;
 		}
 		else{
-			this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + companySuffix;
+			this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + '@' + department + companySuffix;
 		}
 		System.out.println("Your email is: " + this.email);
 		
@@ -116,14 +117,20 @@ public class Email {
 	private String randomPassword(int length){
 		String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%";
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter Password Length:");
-		length = scan.nextInt();
-		char[] password = new char[length];
-		for(int i=0; i<length; i++){
-			int rand = (int) (Math.random() * passwordSet.length()); // Selects a random character in passwordSet
-			password[i] = passwordSet.charAt(rand); // The character selected will be placed in i(th) position of password
+		System.out.println("Enter Password Length(between 8 to 20):");
+		while(true){
+			length = scan.nextInt();
+			if(length>=8 && length<=20){
+				char[] password = new char[length];
+				for(int i=0; i<length; i++){
+					int rand = (int) (Math.random() * passwordSet.length()); // Selects a random character in passwordSet
+					password[i] = passwordSet.charAt(rand); // The character selected will be placed in i(th) position of password
+				}
+				return new String(password); // Converts set of characters into String and returns
+			}
+			System.out.println("Invalid length detected\nEnter valid length:");
+			
 		}
-		return new String(password); // Converts set of characters into String and returns
 	}
 	
 	// Change Password
