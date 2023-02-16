@@ -1,14 +1,69 @@
 package emailapp;
 
+import java.sql.*;
 import java.util.Scanner;
 
 public class EmailApp {
+	public static void main(String[] args) throws SQLException {
+		
+		Connection myConn = null;
+		Statement myStmt = null;
+		ResultSet myRs = null;
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		Email em = new Email();
-			
-		System.out.println(em.showInfo());
+		String dbUrl = "jdbc:mysql://localhost:3306/email";
+		String user = "email";
+		String pass = "email";
+
+		try{
+			Scanner scan = new Scanner(System.in);
+
+			// Load Driver
+			Class.forName("com.mysql.cj.jdbc.Driver");  
+
+			// 1. Get a Connection to database
+			myConn = DriverManager.getConnection(dbUrl, user, pass);
+
+			// 2. Create a statement
+			myStmt = myConn.createStatement();
+
+			System.out.println("1. Create New Worker\n2. Display details of all workers\nEnter your choice:");
+			while(true){
+				int choice = scan.nextInt();
+				if(choice == 1){
+
+					Email em = new Email();
+
+					// 3. Execute SQL query
+					String str = ("INSERT INTO email VALUES('" + em.getFirstName() + "','" + em.getLastName() + "','"
+							+ em.getPassword() + "','" + em.getDepartment() + "','"
+							+ em.getEmail() +"','" + em.getMailBoxCapacity() + "');");
+					myStmt.executeUpdate(str);
+					System.out.println("Successfully inserted into Database");
+					break;
+				}else if(choice == 2){
+					// 3. Execute SQL query
+					String str = ("SELECT * FROM email;");
+					myRs = myStmt.executeQuery(str);
+					while (myRs.next()) {
+						String firstName = myRs.getString("firstname");
+						String lastName = myRs.getString("lastname");
+						String department = myRs.getString("department");
+						String email = myRs.getString("email");
+						int mailBoxCapacity = myRs.getInt("mailboxcapacity");
+						System.out.println(firstName + " " + lastName + " " + department + " " + email + " " + mailBoxCapacity);
+					}
+					break;
+				}
+				System.out.println("Invalid Input\nEnter Valid Choice");
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			if(myRs!=null){
+				myRs.close();
+			}
+		}
 	}
-
 }
