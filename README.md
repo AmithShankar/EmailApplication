@@ -36,12 +36,13 @@ Requirements & Installation
 ## Future Updates
 
 - [ ] User Interface
+- [x] Basic Blueprint
 
 ## Author
 
-**RAmith Shankar**
+**Amith Shankar**
 
-- [Profile]([https://github.com/rohit19060](https://github.com/AmithShankar) "Amith Shankar")
+- [Profile](https://github.com/AmithShankar "Amith Shankar")
 - [Email](mailto:amithshankarkm2@gmail.com?subject=Hi "Hi!")
 - [Website](https://amithshankarkm.in.net/ "Welcome")
 
