@@ -27,3 +27,26 @@ Requirements & Installation
 4. Open Eclipse and create a Java Project or your desired name, Inside the Project create a package called `emailapp`, if in case you would want to change the package name you can do so and change their name in `Email.java` and `EmailApp.java`.
 5. Import both `Email.java` and `EmailApp.java` inside the package you created.
 6. Add *mysql-connector-j-8.0.32.jar* in Libraries if not added before.
+
+## Built With
+
+- Java
+- MySQL
+
+## Future Updates
+
+- [ ] User Interface
+
+## Author
+
+**RAmith Shankar**
+
+- [Profile]([https://github.com/rohit19060](https://github.com/AmithShankar) "Amith Shankar")
+- [Email](mailto:amithshankarkm2@gmail.com?subject=Hi "Hi!")
+- [Website](https://amithshankarkm.in.net/ "Welcome")
+
+## 🤝 Support
+
+Contributions, issues, and feature requests are welcome!
+
+Give a ⭐️ if you like this project!
