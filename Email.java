@@ -51,32 +51,43 @@ public class Email {
 	// Set firstName and lastName
 	public String setFirstName(){
 		System.out.println("Enter your First Name:");
+		while(true){
 		String firstName = scan.next();
-		return firstName;
+		String regex = "^[a-zA-Z]{1,50}";
+		Pattern pat = Pattern.compile(regex);
+		if (pat.matcher(firstName).matches()==true){
+			return firstName;
+		}
+		System.out.println("The input you have entered is Invalid\nEnter valid name");
+		}
 	}
 
 	public String setLastName(){
 		System.out.println("Enter your Last Name:");
-		String lastName = scan.next();
-		return lastName;
+		while(true){
+			String lastName = scan.next();
+			String regex = "^[a-zA-Z]{1,50}";
+			Pattern pat = Pattern.compile(regex);
+			if (pat.matcher(lastName).matches()==true)
+				return lastName;
+			System.out.println("The input you have entered is Invalid\nEnter valid name");
+			}
 	}
 
 	// Ask for department 
 	private String setDepartment(){
 		System.out.println("New Worker: " + firstName + " " + lastName + "\nDepartment Codes:\n0. None\n1. Sales\n"
 				+ "2. Development\n3. Accounting\nEnter department code:");
-		int deptChoice = scan.nextInt();
-		if(deptChoice == 1){
-			return "sales";
-		}
-		else if(deptChoice == 2){
-			return "dev";
-		}
-		else if(deptChoice == 3){
-			return "acc";
-		}
-		else {
-			return "";
+		while(true){
+			int deptChoice = scan.nextInt();
+			switch(deptChoice){
+			case 1 :	return "sales";
+			case 2 :	return "dev";
+			case 3 :	return "acc";
+			case 0 :	return "";
+			default :   System.out.println("Enter valid choice:");
+						break;
+			}
 		}
 	}
 
