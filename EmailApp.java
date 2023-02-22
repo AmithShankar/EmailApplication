@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class EmailApp {
 	public static void main(String[] args) throws SQLException {
-		
+
 		Connection myConn = null;
 		Statement myStmt = null;
 		ResultSet myRs = null;
@@ -14,8 +14,7 @@ public class EmailApp {
 		String user = "email";
 		String pass = "email";
 
-		try{
-			Scanner scan = new Scanner(System.in);
+		try(Scanner scan = new Scanner(System.in)){
 
 			// Load Driver
 			Class.forName("com.mysql.cj.jdbc.Driver");  
@@ -25,12 +24,11 @@ public class EmailApp {
 
 			// 2. Create a statement
 			myStmt = myConn.createStatement();
-
-			System.out.println("1. Create New Worker\n2. Display details of all workers\nEnter your choice:");
+			
 			while(true){
+				System.out.println("1. Create New Worker\n2. Display details of all workers\nEnter your choice:");
 				int choice = scan.nextInt();
-				if(choice == 1){
-
+				if(choice == 1){ 
 					Email em = new Email();
 
 					// 3. Execute SQL query
@@ -39,11 +37,11 @@ public class EmailApp {
 							+ em.getEmail() +"','" + em.getMailBoxCapacity() + "');");
 					myStmt.executeUpdate(str);
 					System.out.println("Successfully inserted into Database");
-					break;
-				}else if(choice == 2){
+				}
+				if(choice == 2){
 					// 3. Execute SQL query
-					String str = ("SELECT * FROM email;");
-					myRs = myStmt.executeQuery(str);
+					String st = ("SELECT * FROM email;");
+					myRs = myStmt.executeQuery(st);
 					while (myRs.next()) {
 						String firstName = myRs.getString("firstname");
 						String lastName = myRs.getString("lastname");
@@ -52,9 +50,10 @@ public class EmailApp {
 						int mailBoxCapacity = myRs.getInt("mailboxcapacity");
 						System.out.println(firstName + " " + lastName + " " + department + " " + email + " " + mailBoxCapacity);
 					}
-					break;
+				}					
+				else{
+					System.out.println("Invalid Input");
 				}
-				System.out.println("Invalid Input\nEnter Valid Choice");
 			}
 		}
 		catch(Exception e){
