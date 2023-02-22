@@ -36,7 +36,7 @@ Requirements & Installation
 ## Future Updates
 
 - [ ] User Interface
-- [x] Basic Blueprint
+- [x] Architecture
 
 ## Author
 
