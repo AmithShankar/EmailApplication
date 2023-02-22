@@ -24,7 +24,7 @@ Requirements & Installation
 1. Install JDK.
 2. Install Eclipse
 3. We used MySQL database in this project. We have to install  MySQL Workbench. In our case we created a database with `email` and `email` as their username and password respectively for MySQL. (If you want to change the username & password then open `EmailApp.java` file and change username or  password according to your MySQL database username and password).
-4. Open Eclipse and create a Java Project or your desired name, Inside the Project create a package called `emailapp`, if in case you would want to change the package name you can do so and change their name in `Email.java` and `EmailApp.java`.
+4. Open Eclipse and create a Java Project of your desired name, Inside the Project create a package called `emailapp`, if in case you would want to change the package name you can do so and change their name in `Email.java` and `EmailApp.java`.
 5. Import both `Email.java` and `EmailApp.java` inside the package you created.
 6. Add *mysql-connector-j-8.0.32.jar* in Libraries if not added before.
 
