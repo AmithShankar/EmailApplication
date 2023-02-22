@@ -1,4 +1,4 @@
-<h1 align="center">Email Application</h1>
+<h1 align="left">Email Application</h1>
 
 <p align="left">Based on Scenario: A IT Support Administrator Specialist who is charged with the task of creating email accounts for new hires.
 Our application does the following:</p>
