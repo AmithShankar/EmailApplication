@@ -28,7 +28,8 @@ public class EmailApp {
 			while(true){
 				System.out.println("1. Create New Worker\n2. Display details of all workers\nEnter your choice:");
 				int choice = scan.nextInt();
-				if(choice == 1){ 
+				switch(choice){
+				case 1:
 					Email em = new Email();
 
 					// 3. Execute SQL query
@@ -37,8 +38,9 @@ public class EmailApp {
 							+ em.getEmail() +"','" + em.getMailBoxCapacity() + "');");
 					myStmt.executeUpdate(str);
 					System.out.println("Successfully inserted into Database");
-				}
-				if(choice == 2){
+					break;
+				
+				case 2:
 					// 3. Execute SQL query
 					String st = ("SELECT * FROM email;");
 					myRs = myStmt.executeQuery(st);
@@ -50,8 +52,9 @@ public class EmailApp {
 						int mailBoxCapacity = myRs.getInt("mailboxcapacity");
 						System.out.println(firstName + " " + lastName + " " + department + " " + email + " " + mailBoxCapacity);
 					}
-				}					
-				else{
+					break;	
+					
+				default:
 					System.out.println("Invalid Input");
 				}
 			}
